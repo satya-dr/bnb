@@ -1,0 +1,81 @@
+
+  <%- include('../partials/head') %>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <%- include('../partials/nav') %>
+
+  
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Welcome to AIRBNB</h1>
+        <h2 class="hero-subtitle">Discover unique homes and experiences</h2>
+        
+        <div class="registered-homes">
+         
+          <div class="homes-list">
+            <% registeredHomes.forEach(home => { %>
+              <div class="home-card">
+                <div class="home-image" style="background-image: url('<%= home.imageUrl %>');">
+                  <div class="rating-badge">
+                    <i class="fas fa-star"></i> <%= home.rating %>
+                  </div>
+                </div>
+                <div class="home-content">
+                  <h3 class="home-title"><%= home.houseName %></h3>
+                  <p class="home-location">
+                    <i class="fas fa-map-marker-alt"></i> <%= home.location %>
+                  </p>
+                  <div class="home-meta">
+                    <span class="home-id">House No.:- <%= home.number %></span>
+                    <span class="home-price">₹<%= parseInt(home.price).toLocaleString() %></span>
+                  </div>
+                  <div class="details" style="display: flex;align-items: center;justify-content: space-between;">
+                    <button class="details-btn"><a href="/home-list/<%= home._id %>">Details</a></button>
+                          <%- include('../partials/favourite',{home:home}) %>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+        
+       
+      </div>
+    </section>
+    
+    <section class="features-section">
+      <h2 class="section-title">Why Choose Us</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Whole homes</h3>
+          <p>Comfortable private places with room for friends or family</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3>Unique stays</h3>
+          <p>Spaces that are more than just a place to sleep</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <h3>Experiences</h3>
+          <p>Activities designed to help you live like a local</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+     <%- include('../partials/footer') %>
+
+</body>
+</html>

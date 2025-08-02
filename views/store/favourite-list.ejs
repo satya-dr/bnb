@@ -1,0 +1,44 @@
+ <%- include('../partials/head') %>
+  <link rel="stylesheet" href="favorite.css">
+</head>
+<body>
+  <%- include('../partials/nav') %>
+
+  <div class="top"><h1>Your Favourite list: </h1></div>
+  <main class="favorites-container">
+     <% favouriteHomes.forEach(home => { %>
+    <div class="favorites-grid">
+      <!-- Favorite Card 1 -->
+      <div class="favorite-card">
+        <div class="favorite-image" style="background-image: url('<%= home.imageUrl %>');">
+          <button class="heart-btn active"><i class="fas fa-heart"></i></button>
+        </div>
+        <div class="favorite-details">
+          <h3 style="display: flex; align-items: center; justify-content: space-between;"><%= home.houseName %> <span style="color: rgb(87, 89, 91); font-weight: 400; font-size:small;"> ID:- <%= home.number %></span></h3>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> <%= home.location %></p>
+          <p class="price">₹<%= home.price %> <span>/night</span></p>
+          <div class="rating">
+            <i class="fas fa-star"></i> <%= home.rating %>
+          </div>
+          <button class="details-btn"><a href="/home-list/<%= home._id %>">Details</a></button>
+          <div class="book" style="display: flex;align-items: center;justify-content: center;"> 
+
+            <%- include('../partials/booking',{home:home}) %>
+
+
+            <form action="/favourites/delete/<%= home._id %>" method="POST">
+
+              <button  type="submit" style="background-color: #5e00009a; color: #fff; border-radius: 10px; box-shadow: 5px 2px 3px ; padding: 5px; margin-left: 2px; font-weight: 700; cursor: pointer;">Remove from favorite</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <% }) %>
+  </main>
+<%- include('../partials/footer') %>
+</body>
+</html>

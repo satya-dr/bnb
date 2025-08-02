@@ -1,0 +1,61 @@
+<header class="main-header">
+  <div class="container">
+    <div class="logo">
+      <i class="fa-brands fa-airbnb"></i>
+      <span class="logo-text">airbnb</span>
+    </div>
+    <nav class="main-nav">
+      <div class="user">
+        <a href="/" class="nav-link <%= currentUrl === '/' ? 'active' : '' %>"
+          >Home</a
+        >
+
+        <% if(isLoggedIn){ %> <% if(user && user.userType === 'guest'){ %>
+        <a
+          href="/home-list"
+          class="nav-link <%= currentUrl.startsWith('/home-list') ? 'active' : '' %>"
+          >Home list</a
+        >
+        <a
+          href="/booking"
+          class="nav-link <%= currentUrl.startsWith('/booking') ? 'active' : '' %>"
+          >Bookings</a
+        >
+        <a
+          href="/favourite-list"
+          class="nav-link <%= currentUrl.startsWith('/favourite-list') ? 'active' : '' %>"
+          >Favourite</a
+        >
+        <% } else{ %>
+        <a
+          href="/host-home-list"
+          class="nav-link <%= currentUrl.startsWith('/host-home-list') ? 'active' : '' %>"
+          >Host Homes</a
+        >
+        <a
+          href="/add-home"
+          class="nav-link <%= currentUrl.startsWith('/add-home') ? 'active' : '' %>"
+          >Add Home</a
+        >
+        <% } %> <% } %> <% if(!isLoggedIn) { %>
+
+        <a
+          href="/login"
+          class="nav-link <%= currentUrl.startsWith('/login') ? 'active' : '' %>"
+          >Log in</a
+        >
+        <a
+          href="/signup"
+          class="nav-link <%= currentUrl.startsWith('/signup') ? 'active' : '' %>"
+          >Sign Up</a
+        >
+        <% } else{ %>
+
+        <form class="logout-form" action="/logout" method="post">
+          <button type="submit">Log out</button>
+        </form>
+        <% } %>
+      </div>
+    </nav>
+  </div>
+</header>

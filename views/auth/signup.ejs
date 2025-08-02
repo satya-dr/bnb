@@ -1,0 +1,110 @@
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="signup.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <%- include('../partials/nav') %>
+  
+  <div class="signup-container">
+    <div class="signup-card">
+      <div class="signup-header">
+        <h1>Create Your Account</h1>
+        <p>Join our community to discover amazing experiences</p>
+      </div>
+      
+  
+<%- include('../partials/errors') %>
+      
+     
+      <form action="/signup" method="POST">
+        <div class="form-group dual-input">
+          <div class="input-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" value="<%= oldInput.firstName ?oldInput.firstName :'' %>" required placeholder="Enter your first name">
+          </div>
+          <div class="input-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName"value="<%= oldInput.lastName ?oldInput.lastName :'' %>" required placeholder="Enter your last name">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" value="<%= oldInput.email ?oldInput.email :'' %>" required placeholder="your@email.com">
+          <i class="fas fa-envelope input-icon"></i>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Create a password">
+          <i class="fas fa-lock input-icon"></i>
+          <div class="password-strength"> 
+            <span class="strength-bar"></span>
+            <span class="strength-bar"></span>
+            <span class="strength-bar"></span>
+          </div>
+          <small class="hint">Use 8+ characters with a mix of letters, numbers & symbols</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+          <i class="fas fa-lock input-icon"></i>
+        </div>
+        
+        <div class="form-group">
+          <label for="userType">I want to join as a</label>
+          <div class="role-selector">
+            <input type="radio" id="guest" name="userType" value="guest" checked="<% oldInput.userType === "guest"%>"/>
+            <label class="role-card" for="guest">
+              <i class="fas fa-user"></i>
+              <span>Guest</span>
+              <small>Book experiences</small>
+            </label>
+            
+            <input type="radio" id="host" name="userType" value="host" checked="<% oldInput.userType === "host"%>">
+            <label class="role-card" for="host">
+              <i class="fas fa-home"></i>
+              <span>Host</span>
+              <small>Create experiences</small>
+            </label>
+          </div>
+        </div>
+        
+        <div class="form-group terms-group">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+        </div>
+        
+        <button type="submit" class="signup-btn">Create Account</button>
+        
+    
+      
+        
+        <div class="login-link">
+          Already have an account? <a href="/login">Log in</a>
+        </div>
+      </form>
+
+
+      
+          <div class="divider">
+        <span>or</span>
+      </div>
+
+         <div class="social-login">
+        <button class="social-btn google-btn">
+          <i class="fab fa-google"></i> Sign up with Google
+        </button>
+        <button class="social-btn facebook-btn">
+          <i class="fab fa-facebook-f"></i> Sign up with Facebook
+        </button>
+      </div>
+      
+
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

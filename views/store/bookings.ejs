@@ -1,0 +1,45 @@
+   <%- include('../partials/head') %>
+
+  <link rel="stylesheet" href="bookings.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+  <main class="bookings-container">
+    <h1 class="page-title">Your Bookings</h1>
+     <% BookingHomes.forEach(home => { %>
+    <div class="bookings-list">
+     
+      <div class="booking-card">
+        <div class="booking-image" style="background-image: url('<%= home.imageUrl %>');"></div>
+        <div class="booking-details">
+          <h3 style="display: flex; align-items: center; justify-content: space-between;"><%= home.houseName %> <span style="color: rgb(87, 89, 91); font-weight: 400; font-size:small;">House ID:- <%= home.number %></span></h3>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> <%= home.location %></p>
+          <div class="booking-dates">
+            <p><strong>Check-in:</strong> Jun 15, 2023</p>
+            <p><strong>Check-out:</strong> Jun 20, 2023</p>
+          </div>
+          <p class="price">Total: $<%= home.price %></p>
+          <p class="status confirmed">Confirmed</p>
+          <form action="/bookings/delete/<%= home._id %>" method="POST">
+
+              <button class="cancel-btn"  type="submit">Cancel Booking</button>
+              
+            </form>
+         
+        </div>
+      </div>
+
+    </div>
+
+
+    <% }) %>
+    
+
+  </main>
+
+     <%- include('../partials/footer') %>
+
+</body>
+</html>

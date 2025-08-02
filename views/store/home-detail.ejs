@@ -1,0 +1,40 @@
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/homeDetails.css">
+</head>
+<body>
+  <%- include('../partials/nav') %>
+
+  <main class="details-container">
+    <div class="details-card">
+
+      <!-- Image -->
+      <div class="details-image" style="background-image: url('<%= home.imageUrl %>');">
+        <span class="details-rating">⭐ <%= home.rating %></span>
+      </div>
+
+      <!-- Info Section -->
+      <div class="details-info">
+        <h2 class="details-title"><%= home.houseName %></h2>
+        <p class="details-location">📍 <%= home.location %></p>
+
+        <div class="details-meta">
+          <span class="home-id">Home ID: <%= home.number %></span>
+          <span class="home-price">₹ <%= home.price %></span>
+        </div>
+
+        <% if(home.description) { %>
+          <p class="home-description"><%= home.description %></p>
+        <% } %>
+
+        <div class="details-buttons">
+          <%- include('../partials/booking',{home:home}) %>
+          <%- include('../partials/favourite') %>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "airbnb",
+  "version": "1.0.0",
+  "description": "This for house rent",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "sexy": "nodemon app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "satyajit roy",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-mongodb-session": "^5.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.0.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.1",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.1",
+    "mysql2": "^3.14.1"
+  }
+}
