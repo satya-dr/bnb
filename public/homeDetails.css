@@ -1,0 +1,157 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+/* Main Container */
+.details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Card */
+.details-card {
+  max-width: 900px;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.details-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Image */
+.details-image {
+  height: 380px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.details-rating {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Info Section */
+.details-info {
+  padding: 24px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.details-title {
+  font-size: 1.8rem;
+  color: #222;
+}
+
+.details-location {
+  font-size: 1rem;
+  color: #666;
+}
+
+.details-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #555;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.home-price {
+  color: #1e8c63;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.home-description {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* Buttons */
+.details-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.book-btn,
+.favBtn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.book-btn {
+  background-color: #00e6c3;
+  color: #000;
+}
+
+.book-btn:hover {
+  background-color: #00c9b1;
+  transform: scale(1.05);
+}
+
+.favBtn {
+  background-color: #ff3399;
+  color: #fff;
+}
+
+.favBtn:hover {
+  background-color: #e60073;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .details-info {
+    padding: 20px;
+  }
+
+  .details-title {
+    font-size: 1.4rem;
+  }
+
+  .details-meta {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .details-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .details-image {
+    height: 240px;
+  }
+}

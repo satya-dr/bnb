@@ -1,0 +1,384 @@
+/* signup.css */
+:root {
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --secondary: #3f37c9;
+  --dark: #1b263b;
+  --light: #f8f9fa;
+  --danger: #f72585;
+  --success: #4cc9f0;
+  --gray: #adb5bd;
+  --gray-light: #e9ecef;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #f5f7ff;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  padding: 2rem;
+}
+
+.signup-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 600px;
+  padding: 2.5rem;
+  margin: 2rem 0;
+}
+
+.signup-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.signup-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+
+.signup-header p {
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-btn {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--gray-light);
+  background: white;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.google-btn {
+  color: #4285F4;
+  border-color: #ddd;
+}
+
+.facebook-btn {
+  color: #4267B2;
+  border-color: #ddd;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.divider::before {
+  margin-right: 1rem;
+}
+
+.divider::after {
+  margin-left: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.dual-input {
+  display: flex;
+  gap: 1rem;
+}
+
+.dual-input .input-group {
+  flex: 1;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 2.5rem;
+  color: var(--gray);
+  font-size: 1rem;
+}
+
+.password-strength {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--gray-light);
+  border-radius: 2px;
+}
+
+.hint {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+.role-selector {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.role-selector input[type="radio"] {
+  display: none;
+}
+
+.role-card {
+  flex: 1;
+  padding: 1.25rem 1rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.role-card i {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.role-card span {
+  font-weight: 500;
+  display: block;
+}
+
+.role-card small {
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+.role-selector input[type="radio"]:checked + .role-card {
+  border-color: var(--primary);
+  background-color: rgba(67, 97, 238, 0.05);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.terms-group {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.terms-group input[type="checkbox"] {
+  margin-right: 0.75rem;
+  width: auto;
+}
+
+.terms-group label {
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+.terms-group a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.signup-btn:hover {
+  background-color: var(--secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.login-link a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+
+
+/* Base styles from previous version remain the same */
+/* Add these new error styles at the bottom */
+
+.error-messages {
+  background-color: #fee2e2;
+  border-left: 4px solid #ef4444;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  color: #b91c1c;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.error-message:last-child {
+  margin-bottom: 0;
+}
+
+.error-message i {
+  margin-right: 0.5rem;
+}
+
+.form-group.error label {
+  color: #b91c1c;
+}
+
+.form-group.error input,
+.form-group.error .role-selector {
+  border-color: #b91c1c;
+  background-color: #fef2f2;
+}
+
+.form-group.error input:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.error-icon {
+  position: absolute;
+  right: 1rem;
+  top: 2.5rem;
+  color: #b91c1c;
+}
+
+.terms-group.error {
+  border: 1px solid #b91c1c;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fef2f2;
+}
+
+.terms-group.error label {
+  color: #b91c1c;
+}
+
+/* Password strength indicator colors */
+.password-strength .strength-bar {
+  background-color: #e5e7eb;
+}
+
+.password-strength .strength-bar:nth-child(1).weak,
+.password-strength .strength-bar:nth-child(1).medium,
+.password-strength .strength-bar:nth-child(1).strong {
+  background-color: #ef4444;
+}
+
+.password-strength .strength-bar:nth-child(2).medium,
+.password-strength .strength-bar:nth-child(2).strong {
+  background-color: #f59e0b;
+}
+
+.password-strength .strength-bar:nth-child(3).strong {
+  background-color: #10b981;
+}
+
+@media (max-width: 768px) {
+  .signup-card {
+    padding: 1.5rem;
+  }
+  
+  .dual-input {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .role-selector {
+    flex-direction: column;
+  }
+}
+
+
