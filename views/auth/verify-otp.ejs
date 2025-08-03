@@ -1,0 +1,25 @@
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/css/verify-otp.css" />
+</head>
+<body>
+<%- include('../partials/nav') %>
+
+<div class="otp-container">
+  <h2>OTP Verification</h2>
+  <% if (errors.length > 0) { %>
+  <div class="error-messages">
+    <% errors.forEach((err) => { %>
+      <p><%= err %></p>
+    <% }) %>
+  </div>
+  <% } %>
+  <form action="/verify-otp" method="POST">
+    <label for="otp">Enter the 6-digit OTP sent to your email</label>
+    <input type="text" id="otp" name="otp" maxlength="6" required placeholder="Enter OTP" />
+    <button type="submit">Verify</button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
+</body>
+</html>
