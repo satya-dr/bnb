@@ -7,16 +7,15 @@ const userSchema = new mongoose.Schema({
   },
   lastName: {
     type: String,
-    // Optional: আপনি চাইলে এখানে `required` যোগ করতে পারেন
   },
   email: {
     type: String,
-    required: [true, "Email is required!"], // মেসেজ সংশোধন
+    required: [true, "Email is required!"], 
     unique: true,
   },
   password: {
     type: String,
-    required: [true, "Password is required!"], // মেসেজ সংশোধন
+    required: [true, "Password is required!"], 
   },
   userType: {
     type: String,
@@ -36,19 +35,17 @@ const userSchema = new mongoose.Schema({
     }
   ],
 
-  // Email/OTP verification এর জন্য ফিল্ড যোগ
   isVerified: {
     type: Boolean,
     default: false,
   },
 
-  // (Optional) যদি DB তে OTP ও expiry রাখতে চান, তাহলে নিচের মত
   otp: {
     type: String,
   },
   otpExpires: {
     type: Date,
   }
-}, { timestamps: true }); // createdAt ও updatedAt ফিল্ড অটোমেটিক
+}, { timestamps: true }); 
 
 module.exports = mongoose.model('User', userSchema);

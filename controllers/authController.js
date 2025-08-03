@@ -1,9 +1,7 @@
 const { check, validationResult } = require("express-validator");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
-const sendOTPEmail = require("../utils/sendEmail"); // nodemailer OTP ইমেইল পাঠানোর ফাংশন
-
-// GET /login
+const sendOTPEmail = require("../utils/sendEmail"); 
 exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     pageTitle: "Login",
@@ -14,8 +12,6 @@ exports.getLogin = (req, res, next) => {
     user: {},
   });
 };
-
-// GET /signup
 exports.getSignUp = (req, res, next) => {
   res.render("auth/signup", {
     pageTitle: "Sign Up",
@@ -27,9 +23,7 @@ exports.getSignUp = (req, res, next) => {
   });
 };
 
-// POST /signup
 exports.postSignup = [
-  // Validation rules
   check("firstName")
     .trim()
     .isLength({ min: 2 })
@@ -83,12 +77,10 @@ exports.postSignup = [
       return true;
     }),
 
-  // Controller logic
   async (req, res, next) => {
     const { firstName, email, lastName, password, userType } = req.body;
     const errors = validationResult(req);
 
-    // Validation error থাকলে রেন্ডার করুন
     if (!errors.isEmpty()) {
       return res.status(422).render("auth/signup", {
         pageTitle: "Sign Up",
@@ -101,7 +93,6 @@ exports.postSignup = [
     }
 
     try {
-      // Duplicate email check
       const existingUser = await User.findOne({ email });
       if (existingUser) {
         return res.status(422).render("auth/signup", {
@@ -114,10 +105,8 @@ exports.postSignup = [
         });
       }
 
-      // Password hash
       const hashedPassword = await bcrypt.hash(password, 12);
 
-      // নতুন ইউজার তৈরি, isVerified false নিয়ে
       const user = new User({
         firstName,
         lastName,
@@ -129,18 +118,14 @@ exports.postSignup = [
 
       await user.save();
 
-      // OTP Generate (6 digit)
       const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-      // Session এ OTP, expiry, emailToVerify রাখুন
       req.session.otp = otp;
-      req.session.otpExpires = Date.now() + 10 * 60 * 1000; // ১০ মিনিট সময়সীমা
+      req.session.otpExpires = Date.now() + 10 * 60 * 1000; 
       req.session.emailToVerify = email;
 
-      // OTP ইমেইল পাঠান
       await sendOTPEmail(email, otp);
 
-      // OTP ভেরিফিকেশন পেজে রিডাইরেক্ট
       return res.redirect("/verify-otp");
     } catch (err) {
       return res.status(422).render("auth/signup", {
@@ -154,8 +139,6 @@ exports.postSignup = [
     }
   },
 ];
-
-// POST /login
 exports.postLogin = async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -171,8 +154,6 @@ exports.postLogin = async (req, res, next) => {
         user: {},
       });
     }
-
-    // Check verified or not
     if (!user.isVerified) {
       return res.status(422).render("auth/login", {
         pageTitle: "Log In",
@@ -206,24 +187,21 @@ exports.postLogin = async (req, res, next) => {
   }
 };
 
-// POST /logout
 exports.postLogOut = (req, res, next) => {
   req.session.destroy(() => {
     res.redirect("/login");
   });
 };
 
-// GET /verify-otp
 exports.getVerifyOTP = (req, res, next) => {
   res.render("auth/verify-otp", {
     pageTitle: "Verify OTP",
     errors: [],
-     currentUrl: req.originalUrl || "/verify-otp",  // এই লাইনটি যোগ করতে হবে
-    isLoggedIn: req.session.isLoggedIn || false   // প্রয়োজনমতো যুক্ত করুন
+     currentUrl: req.originalUrl || "/verify-otp", 
+    isLoggedIn: req.session.isLoggedIn || false   
   });
 };
 
-// POST /verify-otp
 exports.postVerifyOTP = async (req, res, next) => {
   const { otp } = req.body;
 
@@ -243,7 +221,7 @@ exports.postVerifyOTP = async (req, res, next) => {
     return res.status(422).render("auth/verify-otp", {
       pageTitle: "Verify OTP",
       errors: ["OTP expired. Please sign up again."],
-       currentUrl: req.originalUrl || "/verify-otp",  // এখানে দিন
+       currentUrl: req.originalUrl || "/verify-otp",  
       isLoggedIn: req.session.isLoggedIn || false
     });
   }
